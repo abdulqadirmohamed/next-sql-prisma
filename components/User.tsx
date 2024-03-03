@@ -1,5 +1,15 @@
 import Link from 'next/link';
-import React from 'react'
+import React, { use } from 'react'
+import {
+    Table,
+    TableBody,
+    TableCaption,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/components/ui/table"
+
 
 const getUsers = async () => {
     try {
@@ -15,11 +25,28 @@ export const User = async () => {
     const users = await getUsers()
     return (
         <div>
-            {users.map((user: any) => (
-                <div className='hover:underline'>
-                    <Link href={`/user/${user.id}`}>{user.email}</Link>
-                </div>
-            ))}
+            <Table>
+                <TableCaption>Users list</TableCaption>
+                <TableHeader>
+                    <TableRow>
+                        <TableHead className="w-[100px]">Id</TableHead>
+                        <TableHead>Name</TableHead>
+                        <TableHead>Email</TableHead>
+                        <TableHead className="text-right">CreatedAt</TableHead>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    {users.map((user: any) => (
+                    <TableRow className='capitalize'>
+                        <TableCell className="font-medium">{user.id}</TableCell>
+                        <TableCell className="font-medium">{user.name}</TableCell>
+                        <TableCell className="font-medium">{user.email}</TableCell>
+                        <TableCell className="font-medium">{user.createdAt}</TableCell>
+                    </TableRow>
+                        ))}
+                </TableBody>
+            </Table>
+
         </div>
     )
 }
