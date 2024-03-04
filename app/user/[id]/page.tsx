@@ -2,16 +2,15 @@ import { TUser } from '@/types'
 
 import { NextResponse } from 'next/server'
 
-
-const getUser = async (id: string): Promise<TUser | null> => {
+const getUser = async (id: number): Promise<TUser | null> => {
   try {
-    const res = await fetch(`http://localhost:3000/api/user/${id}`, {
+    const res = await fetch(`http://localhost:3000/api/users/${id}`, {
       cache: 'no-store'
     })
-    if (res.ok) {
-      const user = await res.json();
-      return user;
-    } 
+    if (!res.ok) {
+      throw new Error("failed to get details");
+    }
+    return res.json()
 
   } catch (error) {
     console.log(error)
@@ -19,12 +18,12 @@ const getUser = async (id: string): Promise<TUser | null> => {
   return null
 }
 
-const page = async ({ params }: { params: { id: string } }) => {
-  const id = params.id
+const page = async ({ params }: { params: { id: number } }) => {
+  const {id} = params
   const user = await getUser(id)
   return (
     <div>
-      <h1>Hello user {user?.email}</h1>
+      <h1>Hello user  {user?.name} - {user?.email}</h1>
     </div>
   )
 }
