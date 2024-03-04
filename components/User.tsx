@@ -33,20 +33,20 @@ export const User = async () => {
                         <TableHead className="w-[100px]">Id</TableHead>
                         <TableHead>Name</TableHead>
                         <TableHead>Email</TableHead>
-                        <TableHead className="text-right">CreatedAt</TableHead>
-                        <TableHead className="text-right">Action</TableHead>
+                        <TableHead className="">CreatedAt</TableHead>
+                        <TableHead className="text-center">Action</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
                     {users.map((user: any) => (
-                    <TableRow className='capitalize'>
+                    <TableRow className='capitalize' key={user.id}>
                         <TableCell className="font-medium">{user.id}</TableCell>
                         <TableCell className="font-medium">{user.name}</TableCell>
                         <TableCell className="font-medium lowercase">{user.email}</TableCell>
                         <TableCell className="font-medium">{user.createdAt}</TableCell>
                         <TableCell className="font-medium flex gap-2 items-center">
-                            <Link href={`user/${user.id}`}>View</Link>
-                            <button className='bg-red-600 rounded-md py-2 px-3'>Delete</button>
+                            <Link href={`user/${user.id}`} className='text-green-600 hover:underline'>View</Link>
+                            <button className='text-red-600 rounded-md py-2 px-3 hover:underline'>Delete</button>
                         </TableCell>
                     </TableRow>
                         ))}
