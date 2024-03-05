@@ -1,6 +1,7 @@
 import { User } from "@/components/User";
 import { TUser } from "@/types";
 import Image from "next/image";
+import { use } from "react";
 
 const getUsers = async () => {
   try {
@@ -25,6 +26,7 @@ export default async function Home() {
               id={user.id}
               name={user.name}
               email={user.email}
+              createdAt={user.createdAt}
 
             />
           ))
