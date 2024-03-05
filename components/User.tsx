@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import React, { use } from 'react'
 import {
@@ -10,20 +11,11 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import { Button } from './ui/button';
+import DeleteBtn from './DeleteBtn';
 
 
-const getUsers = async () => {
-    try {
-        const res = await fetch('http://localhost:3000/api/users', {
-            cache: 'no-cache'
-        });
-        return res.json()
-    } catch (error) {
-        console.log(error)
-    }
-}
 export const User = async () => {
-    const users = await getUsers()
+
     return (
         <div>
             <Table>
@@ -38,18 +30,7 @@ export const User = async () => {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {users.map((user: any) => (
-                    <TableRow className='capitalize' key={user.id}>
-                        <TableCell className="font-medium">{user.id}</TableCell>
-                        <TableCell className="font-medium">{user.name}</TableCell>
-                        <TableCell className="font-medium lowercase">{user.email}</TableCell>
-                        <TableCell className="font-medium">{user.createdAt}</TableCell>
-                        <TableCell className="font-medium flex gap-2 items-center">
-                            <Link href={`user/${user.id}`} className='text-green-600 hover:underline'>View</Link>
-                            <button className='text-red-600 rounded-md py-2 px-3 hover:underline'>Delete</button>
-                        </TableCell>
-                    </TableRow>
-                        ))}
+                    
                 </TableBody>
             </Table>
 
