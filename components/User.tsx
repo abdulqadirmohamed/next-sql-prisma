@@ -1,38 +1,27 @@
 
 import Link from 'next/link';
 import React, { use } from 'react'
-import {
-    Table,
-    TableBody,
-    TableCaption,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table"
-import { Button } from './ui/button';
+
 import DeleteBtn from './DeleteBtn';
+import { TUser } from '@/types';
 
 
-export const User = async () => {
+export const User = async ({ id, name, email }: TUser) => {
 
     return (
-        <div>
-            <Table>
-                <TableCaption>Users list</TableCaption>
-                <TableHeader>
-                    <TableRow>
-                        <TableHead className="w-[100px]">Id</TableHead>
-                        <TableHead>Name</TableHead>
-                        <TableHead>Email</TableHead>
-                        <TableHead className="">CreatedAt</TableHead>
-                        <TableHead className="text-center">Action</TableHead>
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    
-                </TableBody>
-            </Table>
+        <div className='w-[400px]'>
+            <div className=' flex justify-between items-center gap-10 my-3 border px-6 py-4 group hover:border-blue-600'>
+                <div>
+                    <h1 className='capitalize font-bold group-hover:text-blue-600'>{name}</h1>
+                    <p className='text-sm'>{email}</p>
+                </div>
+                <div className='flex gap-4 items-center'>
+                    <Link href={`user/${id}`} className='hover:text-blue-600'>View</Link>
+                    <span className='hover:text-red-600 cursor-pointer'>
+                        <DeleteBtn id={id}/>
+                    </span>
+                </div>
+            </div>
 
         </div>
     )

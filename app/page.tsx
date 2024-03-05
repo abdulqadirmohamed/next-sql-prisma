@@ -17,19 +17,21 @@ export default async function Home() {
   const users = await getUsers()
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      {users && users.length > 0 ? (
-        users.map((user: TUser) => (
-          <User
-            key={user.id}
-            id={user.id}
-            name={user.name}
-            email={user.email}
-         
-          />
-        ))
-      ) : (
-        <div className="py-6">No posts to display</div>
-      )}
+      <div>
+        {users && users.length > 0 ? (
+          users.map((user: TUser) => (
+            <User
+              key={user.id}
+              id={user.id}
+              name={user.name}
+              email={user.email}
+
+            />
+          ))
+        ) : (
+          <div className="py-6">No posts to display</div>
+        )}
+      </div>
     </main>
   );
 }
