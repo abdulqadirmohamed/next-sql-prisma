@@ -4,6 +4,7 @@ import React, { use } from 'react'
 
 import DeleteBtn from './DeleteBtn';
 import { TUser } from '@/types';
+import { Eye, SquarePen } from 'lucide-react';
 
 
 export const User = async ({ id, name, email }: TUser) => {
@@ -16,7 +17,8 @@ export const User = async ({ id, name, email }: TUser) => {
                     <p className='text-sm'>{email}</p>
                 </div>
                 <div className='flex gap-4 items-center'>
-                    <Link href={`user/${id}`} className='hover:text-blue-600'>View</Link>
+                    <Link href={`user/${id}`} className='hover:text-blue-600'><Eye size={20} /></Link>
+                    <Link href={`edit-user/${id}`} className='hover:text-blue-600'><SquarePen size={20} /></Link>
                     <span className='hover:text-red-600 cursor-pointer'>
                         <DeleteBtn id={id}/>
                     </span>
