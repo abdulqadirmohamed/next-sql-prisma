@@ -2,6 +2,7 @@
 import { Trash2 } from 'lucide-react'
 import React from 'react'
 import { useRouter } from 'next/navigation'
+import toast from 'react-hot-toast'
 
 
 const DeleteBtn = ({ id }: { id: number }) => {
@@ -20,6 +21,7 @@ const DeleteBtn = ({ id }: { id: number }) => {
           console.log('user deleted')
           const user = await res.json()
           // const
+          toast.success('user deleted')
           router.refresh();
         }
       } catch (error) {

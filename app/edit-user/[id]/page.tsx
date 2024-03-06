@@ -8,8 +8,10 @@ const getUser = async (id: number): Promise<TUser | null> => {
     const res = await fetch(`http://localhost:3000/api/users/${id}`, {
       cache: 'no-store'
     })
-    if (!res.ok) {
-      throw new Error("failed to get details");
+    if (res.ok) {
+      const user = await res.json();
+      console.log(user)
+      return user;
     }
     return res.json()
 
@@ -20,11 +22,11 @@ const getUser = async (id: number): Promise<TUser | null> => {
 }
 
 const page = async ({ params }: { params: { id: number } }) => {
-  const { id } = params
+  const  id  = params.id
   const user = await getUser(id)
   return (
     <div className='w-[400px] mx-auto'>
-    {user ? <EditUser user={user} /> : <div>Invalid user</div>}
+      {user ? <EditUser user={user} /> : <div>Invalid user</div>}
     </div>
   )
 }
